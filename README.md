@@ -119,3 +119,37 @@ Records: 0  Duplicates: 0  Warnings: 0
 | roll  | int         | YES  | UNI | NULL    |       |
 
 3 rows in set (0.00 sec)
+
+``` alter table file modify name varchar(30) not null; ```
+
+Query OK, 0 rows affected (0.08 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+``` desc file; ```
+
+
+| Field | Type        | Null | Key | Default | Extra |
+|:-----:|:-----------:|:----:|:---:|:-------:|:-----:|
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(30) | NO   |     | NULL    |       |
+| roll  | int         | NO   |     | NULL    |       |
+
+3 rows in set (0.00 sec)
+
+``` alter table file modify name varchar(30) null; ```
+
+Query OK, 0 rows affected (0.08 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+``` desc file; ```
+
+| Field | Type        | Null | Key | Default | Extra |
+|:-----:|:-----------:|:----:|:---:|:-------:|:-----:|
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
+| roll  | int         | NO   |     | NULL    |       |
+
+3 rows in set (0.00 sec)
+
