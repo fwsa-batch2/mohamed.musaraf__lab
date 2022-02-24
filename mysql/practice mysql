@@ -1,0 +1,138 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| Hasan              |
+| information_schema |
+| mysql              |
+| newFile            |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> create database BookMyShow;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| BookMyShow         |
+| Hasan              |
+| information_schema |
+| mysql              |
+| newFile            |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.01 sec)
+
+mysql> use BookMyShow;
+Database changed
+mysql> create table users(mail_id int primary key,ph_number int unique,name varchar(30) not null,password varchar(10) not null);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc user;
+ERROR 1146 (42S02): Table 'BookMyShow.user' doesn't exist
+mysql> desc users;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| mail_id   | int         | NO   | PRI | NULL    |       |
+| ph_number | int         | YES  | UNI | NULL    |       |
+| name      | varchar(30) | NO   |     | NULL    |       |
+| password  | varchar(10) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table users modify ph_number ph_number int not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ph_number int not null' at line 1
+mysql> alter table users modify ph_number int not null;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc users;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| mail_id   | int         | NO   | PRI | NULL    |       |
+| ph_number | int         | NO   | UNI | NULL    |       |
+| name      | varchar(30) | NO   |     | NULL    |       |
+| password  | varchar(10) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE users ADD confirm_password varchar(10) not null;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc users;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| mail_id          | int         | NO   | PRI | NULL    |       |
+| ph_number        | int         | NO   | UNI | NULL    |       |
+| name             | varchar(30) | NO   |     | NULL    |       |
+| password         | varchar(10) | NO   |     | NULL    |       |
+| confirm_password | varchar(10) | NO   |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO users VALUES(hasan@gmail.com,9080641773,musaraf,hasan,hasan);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmail.com,9080641773,musaraf,hasan,hasan)' at line 1
+mysql> alter table users modify mail_id varchar(30);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table users modify mail_id varchar(30) not null;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table users modify ph_number bigint not null;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc users;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| mail_id          | varchar(30) | NO   | PRI | NULL    |       |
+| ph_number        | bigint      | NO   | UNI | NULL    |       |
+| name             | varchar(30) | NO   |     | NULL    |       |
+| password         | varchar(10) | NO   |     | NULL    |       |
+| confirm_password | varchar(10) | NO   |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> INSERT INTO users VALUES(hasan@gmail.com,9080641773,musaraf,hasan,hasan);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmail.com,9080641773,musaraf,hasan,hasan)' at line 1
+mysql> INSERT INTO users VALUES("hasan@gmail.com",9080641773,"musaraf","hasan","hasan");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from users;
++-----------------+------------+---------+----------+------------------+
+| mail_id         | ph_number  | name    | password | confirm_password |
++-----------------+------------+---------+----------+------------------+
+| hasan@gmail.com | 9080641773 | musaraf | hasan    | hasan            |
++-----------------+------------+---------+----------+------------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO users VALUES("sabi@gmail.com",9080641773,"sabi","hasan","hasan");
+ERROR 1062 (23000): Duplicate entry '9080641773' for key 'users.ph_number'
+mysql> INSERT INTO users VALUES("sabi@gmail.com",9080641763,"sabi","hasan","hasan");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO users VALUES("abi@gmail.com",9080641743,"abi","hasan","hasan");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from users;
++-----------------+------------+---------+----------+------------------+
+| mail_id         | ph_number  | name    | password | confirm_password |
++-----------------+------------+---------+----------+------------------+
+| abi@gmail.com   | 9080641743 | abi     | hasan    | hasan            |
+| hasan@gmail.com | 9080641773 | musaraf | hasan    | hasan            |
+| sabi@gmail.com  | 9080641763 | sabi    | hasan    | hasan            |
++-----------------+------------+---------+----------+------------------+
+3 rows in set (0.00 sec)
+
