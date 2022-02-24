@@ -1,0 +1,78 @@
+mysql> use BookMyShow;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_BookMyShow |
++----------------------+
+| users                |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> create table movie_details(movie_id int primary key,movie_name varchar(30) unique not null,ticket_price int not null);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc movie_details;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| movie_id     | int         | NO   | PRI | NULL    |       |
+| movie_name   | varchar(30) | NO   | UNI | NULL    |       |
+| ticket_price | int         | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into movie_details values(2,"beast",20),(1,"valimai",40);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from movie_details;
++----------+------------+--------------+
+| movie_id | movie_name | ticket_price |
++----------+------------+--------------+
+|        1 | valimai    |           40 |
+|        2 | beast      |           20 |
++----------+------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table movie_details drop constraint unique(movie_name);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'unique(movie_name)' at line 1
+mysql> alter table movie_details drop constraint movie_name;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc movie_details;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| movie_id     | int         | NO   | PRI | NULL    |       |
+| movie_name   | varchar(30) | NO   |     | NULL    |       |
+| ticket_price | int         | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from movie
+    -> select * from movie
+    -> select * from movie_details where ticket_price = 20;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from movie
+select * from movie_details where ticket_price = 20' at line 2
+mysql>  select * from movie_details where ticket_price = 20;
++----------+------------+--------------+
+| movie_id | movie_name | ticket_price |
++----------+------------+--------------+
+|        2 | beast      |           20 |
++----------+------------+--------------+
+1 row in set (0.00 sec)
+
+mysql>  select * from movie_details where movie_name =beast and  ticket_price = 20;
+ERROR 1054 (42S22): Unknown column 'beast' in 'where clause'
+mysql>  select * from movie_details where movie_name ="beast" and  ticket_price = 20;
++----------+------------+--------------+
+| movie_id | movie_name | ticket_price |
++----------+------------+--------------+
+|        2 | beast      |           20 |
++----------+------------+--------------+
+1 row in set (0.00 sec)
+
