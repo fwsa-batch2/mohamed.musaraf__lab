@@ -1,0 +1,154 @@
+mysql> alter table users add column customer_id int unique;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc users;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| mail_id          | varchar(30) | NO   | PRI | NULL    |       |
+| ph_number        | bigint      | NO   | UNI | NULL    |       |
+| name             | varchar(30) | NO   |     | NULL    |       |
+| password         | varchar(10) | NO   |     | NULL    |       |
+| confirm_password | varchar(10) | NO   |     | NULL    |       |
+| customer_id      | int         | YES  | UNI | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+
+mysql> alter table users modify customer_id int null;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc users;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| mail_id          | varchar(30) | NO   | PRI | NULL    |       |
+| ph_number        | bigint      | NO   | UNI | NULL    |       |
+| name             | varchar(30) | NO   |     | NULL    |       |
+| password         | varchar(10) | NO   |     | NULL    |       |
+| confirm_password | varchar(10) | NO   |     | NULL    |       |
+| customer_id      | int         | YES  | UNI | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+
+mysql> select * from movie_details;
++----------+------------+--------------+
+| movie_id | movie_name | ticket_price |
++----------+------------+--------------+
+|        1 | valimai    |           40 |
+|        2 | beast      |           20 |
++----------+------------+--------------+
+2 rows in set (0.00 sec)
+
+
+mysql> insert into movie_details values(3,"avan",30);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from movie_details;
++----------+------------+--------------+
+| movie_id | movie_name | ticket_price |
++----------+------------+--------------+
+|        1 | valimai    |           40 |
+|        2 | beast      |           20 |
+|        3 | avan       |           30 |
++----------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users;
++-----------------+------------+---------+----------+------------------+-------------+
+| mail_id         | ph_number  | name    | password | confirm_password | customer_id |
++-----------------+------------+---------+----------+------------------+-------------+
+| abi@gmail.com   | 9080641743 | abi     | hasan    | hasan            |        NULL |
+| hasan@gmail.com | 9080641773 | musaraf | hasan    | hasan            |        NULL |
+| sabi@gmail.com  | 9080641763 | sabi    | hasan    | hasan            |        NULL |
++-----------------+------------+---------+----------+------------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update users set customer_id = 100 where name = "abi";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from users;
++-----------------+------------+---------+----------+------------------+-------------+
+| mail_id         | ph_number  | name    | password | confirm_password | customer_id |
++-----------------+------------+---------+----------+------------------+-------------+
+| abi@gmail.com   | 9080641743 | abi     | hasan    | hasan            |         100 |
+| hasan@gmail.com | 9080641773 | musaraf | hasan    | hasan            |        NULL |
+| sabi@gmail.com  | 9080641763 | sabi    | hasan    | hasan            |        NULL |
++-----------------+------------+---------+----------+------------------+-------------+
+3 rows in set (0.00 sec)
+
+
+mysql> update users set customer_id = 200 where name = "musaraf";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update users set customer_id = 300 where name = "sabi";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from users;
++-----------------+------------+---------+----------+------------------+-------------+
+| mail_id         | ph_number  | name    | password | confirm_password | customer_id |
++-----------------+------------+---------+----------+------------------+-------------+
+| abi@gmail.com   | 9080641743 | abi     | hasan    | hasan            |         100 |
+| hasan@gmail.com | 9080641773 | musaraf | hasan    | hasan            |         200 |
+| sabi@gmail.com  | 9080641763 | sabi    | hasan    | hasan            |         300 |
++-----------------+------------+---------+----------+------------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table movie_details add column customer_id int;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update movie_details set customer_id = 100 where movie_id = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update movie_details set customer_id = 200 where movie_id = 2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update movie_details set customer_id = 300 where movie_id = 3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from movie_details;
++----------+------------+--------------+-------------+
+| movie_id | movie_name | ticket_price | customer_id |
++----------+------------+--------------+-------------+
+|        1 | valimai    |           40 |         100 |
+|        2 | beast      |           20 |         200 |
+|        3 | avan       |           30 |         300 |
++----------+------------+--------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select users.name,users.ph_number,movie_details.movie_name,movie_details.ticket_price from users inner join movie_details on users.customer_id = movie_details.customer_id;
++---------+------------+------------+--------------+
+| name    | ph_number  | movie_name | ticket_price |
++---------+------------+------------+--------------+
+| abi     | 9080641743 | valimai    |           40 |
+| musaraf | 9080641773 | beast      |           20 |
+| sabi    | 9080641763 | avan       |           30 |
++---------+------------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select users.name,users.ph_number,movie_details.movie_name,movie_details.ticket_price from users inner join movie_details;
++---------+------------+------------+--------------+
+| name    | ph_number  | movie_name | ticket_price |
++---------+------------+------------+--------------+
+| sabi    | 9080641763 | valimai    |           40 |
+| musaraf | 9080641773 | valimai    |           40 |
+| abi     | 9080641743 | valimai    |           40 |
+| sabi    | 9080641763 | beast      |           20 |
+| musaraf | 9080641773 | beast      |           20 |
+| abi     | 9080641743 | beast      |           20 |
+| sabi    | 9080641763 | avan       |           30 |
+| musaraf | 9080641773 | avan       |           30 |
+| abi     | 9080641743 | avan       |           30 |
++---------+------------+------------+--------------+
+9 rows in set (0.00 sec)
+
