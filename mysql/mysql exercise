@@ -1,0 +1,327 @@
+mysql> use school_management;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> desc students;
++--------------+--------------+------+-----+-------------------+-------------------+
+| Field        | Type         | Null | Key | Default           | Extra             |
++--------------+--------------+------+-----+-------------------+-------------------+
+| id           | int          | NO   | PRI | NULL              | auto_increment    |
+| name         | varchar(100) | NO   |     | NULL              |                   |
+| email        | varchar(100) | NO   | UNI | NULL              |                   |
+| mobile_no    | bigint       | NO   |     | NULL              |                   |
+| password     | varchar(100) | NO   |     | NULL              |                   |
+| gender       | char(1)      | NO   |     | NULL              |                   |
+| dob          | date         | YES  |     | NULL              |                   |
+| created_date | timestamp    | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++--------------+--------------+------+-----+-------------------+-------------------+
+8 rows in set (0.00 sec)
+
+mysql> desc student_class;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int         | NO   | PRI | NULL    | auto_increment |
+| student_id | int         | NO   | MUL | NULL    |                |
+| class      | int         | NO   |     | NULL    |                |
+| status     | varchar(20) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into students values(1,"Hasan","hasan@gmail.com",9090807367,"hasan123","M","2001-12-04",now());
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from students;
++----+-------+-----------------+------------+----------+--------+------------+---------------------+
+| id | name  | email           | mobile_no  | password | gender | dob        | created_date        |
++----+-------+-----------------+------------+----------+--------+------------+---------------------+
+|  1 | Hasan | hasan@gmail.com | 9090807367 | hasan123 | M      | 2001-12-04 | 2022-03-02 12:48:04 |
++----+-------+-----------------+------------+----------+--------+------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into students values(1,"Hasan","hasan@gmail.com",9090807367,"hasan123","M","2001-12-04",now()),^[[B^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A
+        select * from movie_details where ticket_price = 20;
+^C
+mysql> insert into students values("Aasan","Aasan@gmail.com",9090807363,"Aasan123","M","2001-12-03",now());
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into students values(2,"Aasan","Aasan@gmail.com",9090807363,"Aasan123","M","2001-12-03",now());
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from students;
++----+-------+-----------------+------------+----------+--------+------------+---------------------+
+| id | name  | email           | mobile_no  | password | gender | dob        | created_date        |
++----+-------+-----------------+------------+----------+--------+------------+---------------------+
+|  1 | Hasan | hasan@gmail.com | 9090807367 | hasan123 | M      | 2001-12-04 | 2022-03-02 12:48:04 |
+|  2 | Aasan | Aasan@gmail.com | 9090807363 | Aasan123 | M      | 2001-12-03 | 2022-03-02 12:53:08 |
++----+-------+-----------------+------------+----------+--------+------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into students values(3,"Aswath","Aswath@gmail.com",9090807361,"Aswath123","M","2005-12-03",now()),(4,"sugu","sugu@gmail.com",8623846329,"sugu123","M","2003-05-02",now());
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++----+--------+------------------+------------+-----------+--------+------------+---------------------+
+| id | name   | email            | mobile_no  | password  | gender | dob        | created_date        |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+
+|  1 | Hasan  | hasan@gmail.com  | 9090807367 | hasan123  | M      | 2001-12-04 | 2022-03-02 12:48:04 |
+|  2 | Aasan  | Aasan@gmail.com  | 9090807363 | Aasan123  | M      | 2001-12-03 | 2022-03-02 12:53:08 |
+|  3 | Aswath | Aswath@gmail.com | 9090807361 | Aswath123 | M      | 2005-12-03 | 2022-03-02 12:57:18 |
+|  4 | sugu   | sugu@gmail.com   | 8623846329 | sugu123   | M      | 2003-05-02 | 2022-03-02 12:57:18 |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select email,password from students;
++------------------+-----------+
+| email            | password  |
++------------------+-----------+
+| hasan@gmail.com  | hasan123  |
+| Aasan@gmail.com  | Aasan123  |
+| Aswath@gmail.com | Aswath123 |
+| sugu@gmail.com   | sugu123   |
++------------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> update table students set column password = "123sugu" where id = 4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table students set column password = "123sugu" where id = 4' at line 1
+mysql>  update table students set column password = "123sugu" where id = 4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table students set column password = "123sugu" where id = 4' at line 1
+mysql> update students set column password = "123sugu" where id = 4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column password = "123sugu" where id = 4' at line 1
+mysql> update students set password = "123sugu" where id = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++----+--------+------------------+------------+-----------+--------+------------+---------------------+
+| id | name   | email            | mobile_no  | password  | gender | dob        | created_date        |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+
+|  1 | Hasan  | hasan@gmail.com  | 9090807367 | hasan123  | M      | 2001-12-04 | 2022-03-02 12:48:04 |
+|  2 | Aasan  | Aasan@gmail.com  | 9090807363 | Aasan123  | M      | 2001-12-03 | 2022-03-02 12:53:08 |
+|  3 | Aswath | Aswath@gmail.com | 9090807361 | Aswath123 | M      | 2005-12-03 | 2022-03-02 12:57:18 |
+|  4 | sugu   | sugu@gmail.com   | 8623846329 | 123sugu   | M      | 2003-05-02 | 2022-03-02 12:57:18 |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student_class values(1,10,5,"ACTIVE");
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`school_management`.`student_class`, CONSTRAINT `student_class_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`))
+mysql> insert into student_class values(10,1,5,"ACTIVE");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student_class;
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+| 10 |          1 |     5 | ACTIVE |
++----+------------+-------+--------+
+1 row in set (0.01 sec)
+
+mysql> insert into student_class values(11,2,5,"INACTIVE"),(12,3,6,"ACTIVE"),(13,4,7,"ACTIVE");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_class;
++----+------------+-------+----------+
+| id | student_id | class | status   |
++----+------------+-------+----------+
+| 10 |          1 |     5 | ACTIVE   |
+| 11 |          2 |     5 | INACTIVE |
+| 12 |          3 |     6 | ACTIVE   |
+| 13 |          4 |     7 | ACTIVE   |
++----+------------+-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student_class where class = 5;
++----+------------+-------+----------+
+| id | student_id | class | status   |
++----+------------+-------+----------+
+| 10 |          1 |     5 | ACTIVE   |
+| 11 |          2 |     5 | INACTIVE |
++----+------------+-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> update student_class set class = 6 where student_id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_class set class = 6 where student_id = 2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student_class;
++----+------------+-------+----------+
+| id | student_id | class | status   |
++----+------------+-------+----------+
+| 10 |          1 |     6 | ACTIVE   |
+| 11 |          2 |     6 | INACTIVE |
+| 12 |          3 |     6 | ACTIVE   |
+| 13 |          4 |     7 | ACTIVE   |
++----+------------+-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> update student_class set class = 7 where student_id = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_class set class = 8 where student_id = 4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student_class;
++----+------------+-------+----------+
+| id | student_id | class | status   |
++----+------------+-------+----------+
+| 10 |          1 |     6 | ACTIVE   |
+| 11 |          2 |     6 | INACTIVE |
+| 12 |          3 |     7 | ACTIVE   |
+| 13 |          4 |     8 | ACTIVE   |
++----+------------+-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> delete from student_class where id = 11;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student_class;
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+| 10 |          1 |     6 | ACTIVE |
+| 12 |          3 |     7 | ACTIVE |
+| 13 |          4 |     8 | ACTIVE |
++----+------------+-------+--------+
+3 rows in set (0.00 sec)
+
+
+mysql> select * from students where dob = null;
+Empty set (0.00 sec)
+
+
+mysql> select * from students w' at line 1
+mysql> select * from students where status = "ACTIVE";
+ERROR 1054 (42S22): Unknown column 'status' in 'where clause'
+mysql> select * from student_class where status = "ACTIVE";
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+| 10 |          1 |     6 | ACTIVE |
+| 12 |          3 |     7 | ACTIVE |
+| 13 |          4 |     8 | ACTIVE |
++----+------------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select count(*) from student_class where status = "ACTIVE";
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from student_class where status = "ACTIVE" group by class;
++----------+
+| count(*) |
++----------+
+|        1 |
+|        1 |
+|        1 |
++----------+
+3 rows in set (0.01 sec)
+
+mysql> select count(*),class from student_class where status = "ACTIVE" group by class;
++----------+-------+
+| count(*) | class |
++----------+-------+
+|        1 |     6 |
+|        1 |     7 |
+|        1 |     8 |
++----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select count(*),class from student_class where status = "ACTIVE" group by class having count(*)<5;
++----------+-------+
+| count(*) | class |
++----------+-------+
+|        1 |     6 |
+|        1 |     7 |
+|        1 |     8 |
++----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from students inner join student_class on students.id = student_class.student_id;
++----+--------+------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+| id | name   | email            | mobile_no  | password  | gender | dob        | created_date        | id | student_id | class | status |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+|  1 | Hasan  | hasan@gmail.com  | 9090807367 | hasan123  | M      | 2001-12-04 | 2022-03-02 12:48:04 | 10 |          1 |     6 | ACTIVE |
+|  3 | Aswath | Aswath@gmail.com | 9090807361 | Aswath123 | M      | 2005-12-03 | 2022-03-02 12:57:18 | 12 |          3 |     7 | ACTIVE |
+|  4 | sugu   | sugu@gmail.com   | 8623846329 | 123sugu   | M      | 2003-05-02 | 2022-03-02 12:57:18 | 13 |          4 |     8 | ACTIVE |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from students inner join student_class on students.id = student_class.student_id where class = 5;
+Empty set (0.00 sec)
+
+mysql> select * from students inner join student_class on students.id = student_class.student_id having class = 5;
+Empty set (0.00 sec)
+
+mysql> select * from students inner join student_class where class = 5;
+Empty set (0.01 sec)
+
+mysql> select * from students inner join student_class having class = 5;
+Empty set (0.00 sec)
+
+mysql> select * from students inner join student_class where class = 6;
++----+--------+------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+| id | name   | email            | mobile_no  | password  | gender | dob        | created_date        | id | student_id | class | status |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+|  1 | Hasan  | hasan@gmail.com  | 9090807367 | hasan123  | M      | 2001-12-04 | 2022-03-02 12:48:04 | 10 |          1 |     6 | ACTIVE |
+|  2 | Aasan  | Aasan@gmail.com  | 9090807363 | Aasan123  | M      | 2001-12-03 | 2022-03-02 12:53:08 | 10 |          1 |     6 | ACTIVE |
+|  3 | Aswath | Aswath@gmail.com | 9090807361 | Aswath123 | M      | 2005-12-03 | 2022-03-02 12:57:18 | 10 |          1 |     6 | ACTIVE |
+|  4 | sugu   | sugu@gmail.com   | 8623846329 | 123sugu   | M      | 2003-05-02 | 2022-03-02 12:57:18 | 10 |          1 |     6 | ACTIVE |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from students inner join student_class on students.id = student_class.student_id where class = 6;
++----+-------+-----------------+------------+----------+--------+------------+---------------------+----+------------+-------+--------+
+| id | name  | email           | mobile_no  | password | gender | dob        | created_date        | id | student_id | class | status |
++----+-------+-----------------+------------+----------+--------+------------+---------------------+----+------------+-------+--------+
+|  1 | Hasan | hasan@gmail.com | 9090807367 | hasan123 | M      | 2001-12-04 | 2022-03-02 12:48:04 | 10 |          1 |     6 | ACTIVE |
++----+-------+-----------------+------------+----------+--------+------------+---------------------+----+------------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> select class from students inner join student_class on students.id = student_class.student_id where email  like "%u@gmail.com" ;
++-------+
+| class |
++-------+
+|     8 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select class from students inner join student_class on students.id = student_class.student_id where email= "sugu@gmail.com" ;
++-------+
+| class |
++-------+
+|     8 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select name from students left join student_class on students.id = student_class.student_id where class is null;
++-------+
+| name  |
++-------+
+| Aasan |
++-------+
+1 row in set (0.00 sec)
+
+
+mysql> select * from students left join student_class on students.id = student_class.student_id;
++----+--------+------------------+------------+-----------+--------+------------+---------------------+------+------------+-------+--------+
+| id | name   | email            | mobile_no  | password  | gender | dob        | created_date        | id   | student_id | class | status |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+------+------------+-------+--------+
+|  1 | Hasan  | hasan@gmail.com  | 9090807367 | hasan123  | M      | 2001-12-04 | 2022-03-02 12:48:04 |   10 |          1 |     6 | ACTIVE |
+|  2 | Aasan  | Aasan@gmail.com  | 9090807363 | Aasan123  | M      | 2001-12-03 | 2022-03-02 12:53:08 | NULL |       NULL |  NULL | NULL   |
+|  3 | Aswath | Aswath@gmail.com | 9090807361 | Aswath123 | M      | 2005-12-03 | 2022-03-02 12:57:18 |   12 |          3 |     7 | ACTIVE |
+|  4 | sugu   | sugu@gmail.com   | 8623846329 | 123sugu   | M      | 2003-05-02 | 2022-03-02 12:57:18 |   13 |          4 |     8 | ACTIVE |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+------+------------+-------+--------+
+4 rows in set (0.00 sec)
+
