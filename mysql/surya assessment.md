@@ -11,12 +11,12 @@ mysql> create table course(id int primary key auto_increment,name varchar(30) no
 Query OK, 0 rows affected (0.05 sec)
 
 mysql> desc user;
-+-------+-------------+------+-----+---------+----------------+
+
 | Field | Type        | Null | Key | Default | Extra          |
-+-------+-------------+------+-----+---------+----------------+
+|-------|-------------|------|-----|---------|----------------|
 | id    | int         | NO   | PRI | NULL    | auto_increment |
 | name  | varchar(30) | NO   |     | NULL    |                |
-+-------+-------------+------+-----+---------+----------------+
+
 2 rows in set (0.00 sec)
 
 mysql> desc batch;
