@@ -1,4 +1,4 @@
-```
+
 use Academy;
 Database changed
 mysql> create table user(id int primary key auto_increment,name varchar(30) not null);
@@ -11,12 +11,12 @@ mysql> create table course(id int primary key auto_increment,name varchar(30) no
 Query OK, 0 rows affected (0.05 sec)
 
 mysql> desc user;
-+-------+-------------+------+-----+---------+----------------+
+
 | Field | Type        | Null | Key | Default | Extra          |
-+-------+-------------+------+-----+---------+----------------+
+|-------|-------------|------|-----|---------|----------------|
 | id    | int         | NO   | PRI | NULL    | auto_increment |
 | name  | varchar(30) | NO   |     | NULL    |                |
-+-------+-------------+------+-----+---------+----------------+
+
 2 rows in set (0.00 sec)
 
 mysql> desc batch;
@@ -213,10 +213,10 @@ mysql> select course.id as course_id,course.name as course_name ,batch.id as bat
 1 row in set (0.00 sec)
 
 mysql> select course.id as course_id,course.name as course_name ,batch.id as batch_id,batch.name as batch_name ,user.id as user_id,user.name as user_name from user join batch on user.id = batch.id join course on course.id= user.id where batch.name = "batch 1";
-+-----------+-------------+----------+------------+---------+-----------+
+
 | course_id | course_name | batch_id | batch_name | user_id | user_name |
-+-----------+-------------+----------+------------+---------+-----------+
+|-----------|-------------|----------|------------|---------|-----------|
 |         1 | html        |        1 | batch 1    |       1 | hasan     |
-+-----------+-------------+----------+------------+---------+-----------+
+
 1 row in set (0.00 sec)
-```
+
