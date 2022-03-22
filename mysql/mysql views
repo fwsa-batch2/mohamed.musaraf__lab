@@ -1,0 +1,75 @@
+mysql> use subQuery;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_subQuery |
++--------------------+
+| market             |
+| shop               |
+| temp_market        |
++--------------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from market;
++----+---------+------------+
+| id | shop_no | owner_name |
++----+---------+------------+
+|  1 |     100 | kovindha   |
+|  2 |     200 | aswath     |
+|  3 |     300 | hasan      |
+|  4 |     400 | mohamed    |
+|  5 |     500 | musaraf    |
++----+---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from shop;
++----+---------+
+| id | shop_id |
++----+---------+
+|  1 |       1 |
+|  2 |       2 |
+|  3 |       3 |
+|  4 |       4 |
+|  5 |       5 |
++----+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from temp_market;
++----+---------+------------+
+| id | shop_no | owner_name |
++----+---------+------------+
+|  1 |     100 | kovindha   |
++----+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> create view temp_view as select market.id,market.owner_name from market;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from temp_view;
++----+------------+
+| id | owner_name |
++----+------------+
+|  1 | kovindha   |
+|  2 | aswath     |
+|  3 | hasan      |
+|  4 | mohamed    |
+|  5 | musaraf    |
++----+------------+
+5 rows in set (0.00 sec)
+
+mysql> drop view temp_view;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_subQuery |
++--------------------+
+| market             |
+| shop               |
+| temp_market        |
++--------------------+
+3 rows in set (0.01 sec)
+
