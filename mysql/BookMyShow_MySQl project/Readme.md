@@ -402,6 +402,7 @@ SELECT * FROM Review;
 
 ###### 4 rows in set (0.00 sec)
 
+<<<<<<< HEAD
 ***
 
 
@@ -433,4 +434,12 @@ SHOW TABLES;
 
 
 
+=======
+## ER_Model :
+>>>>>>> a564e642b232122dc678986916fc8b3d17751815
 
+![ER_Model](https://user-images.githubusercontent.com/93640404/159658472-c6c4f414-58c4-46ce-9b9d-3ec7d05ef926.png)
+
+## EER_Model :
+
+![err diagram](https://user-images.githubusercontent.com/93640404/159658266-1b6891f7-895c-4245-87d2-0c94f94389a5.png)
