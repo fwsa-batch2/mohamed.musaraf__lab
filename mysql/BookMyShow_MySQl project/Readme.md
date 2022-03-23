@@ -304,3 +304,4 @@ INSERT INTO Ticket VALUES (1,101,50,501),(2,102,60,502),(3,103,100,503),(4,104,1
 ###### 4 rows in set (0.00 sec)
 
 
+![err diagram](https://user-images.githubusercontent.com/93640404/159658266-1b6891f7-895c-4245-87d2-0c94f94389a5.png)
