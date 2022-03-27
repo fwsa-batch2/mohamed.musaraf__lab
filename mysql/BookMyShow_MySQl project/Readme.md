@@ -442,4 +442,4 @@ SHOW TABLES;
 
 ## EER_Model :
 
-![err diagram](https://user-images.githubusercontent.com/93640404/159658266-1b6891f7-895c-4245-87d2-0c94f94389a5.png)
+![err_output](https://user-images.githubusercontent.com/93640404/160287494-55f268e0-0747-46e4-b588-281729a19950.png)
