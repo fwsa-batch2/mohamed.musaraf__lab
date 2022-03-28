@@ -434,11 +434,10 @@ SHOW TABLES;
 
 
 
-=======
-## ER_Model :
->>>>>>> a564e642b232122dc678986916fc8b3d17751815
 
-x-special/nautilus-clipboar![ER_DIAGRAM](https://user-images.githubusercontent.com/93640404/160378589-117dbd5f-0177-43df-be56-59ec00e5bf1a.png)
+## ER_Model :
+
+![ER_DIAGRAM](https://user-images.githubusercontent.com/93640404/160378589-117dbd5f-0177-43df-be56-59ec00e5bf1a.png)
 
 
 
