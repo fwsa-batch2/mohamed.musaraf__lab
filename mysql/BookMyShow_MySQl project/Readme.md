@@ -438,7 +438,9 @@ SHOW TABLES;
 ## ER_Model :
 >>>>>>> a564e642b232122dc678986916fc8b3d17751815
 
-![ER_Model](https://user-images.githubusercontent.com/93640404/159658472-c6c4f414-58c4-46ce-9b9d-3ec7d05ef926.png)
+x-special/nautilus-clipboar![ER_DIAGRAM](https://user-images.githubusercontent.com/93640404/160378589-117dbd5f-0177-43df-be56-59ec00e5bf1a.png)
+
+
 
 ## EER_Model :
 
