@@ -437,7 +437,8 @@ SHOW TABLES;
 
 ## ER_Model :
 
-![ER_MODEL](https://user-images.githubusercontent.com/93640404/160380605-1a1be861-e465-4433-b3b6-09a1b494e7fd.png)
+![ER_MODUL](https://user-images.githubusercontent.com/93640404/160382094-5c3f35e3-77d5-44e3-9257-ad47971ea5cf.png)
+
 
 
 ## EER_Model :
